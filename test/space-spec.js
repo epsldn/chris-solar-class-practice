@@ -70,7 +70,7 @@ describe('Star', () => {
     })
 
     it('should add itself to its galaxy\'s stars array upon instantiation', () => {
-        expect(sol.galaxy.stars.includes(sol));
+        expect(sol.galaxy.stars.includes(sol)).to.be.true;
     })
 
     it('should have an array of planets', () => {
