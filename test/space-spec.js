@@ -102,8 +102,8 @@ describe('Star', () => {
     describe('printPlanets()', () => {
         context('if it has planets', () => {
             it('should print out a string of all the names of the planets in its orbit', () => {
-                let mercury = new Planet('Mercury', 1, 1, false)
-                let venus = new Planet('Venus', 1, 1, false)
+                let mercury = new Planet('Mercury', 4.5, 0.056, false)
+                let venus = new Planet('Venus', 4.5, 0.815, false)
                 sol.addPlanet(mercury)
                 sol.addPlanet(venus)
                 sol.addPlanet(earth)
