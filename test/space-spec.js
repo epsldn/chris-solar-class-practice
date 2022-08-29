@@ -247,11 +247,11 @@ describe('Astronaut', () => {
         buzz = earth.recruitAstronaut('Buzz Aldrin', 36, 'USA', 'mechanical engineering');
     })
 
-    it('should have name, age, nationality, and specialty properties', () => {
+    it('should have name, age, nationality, and expertise properties', () => {
         expect(buzz.name).to.equal('Buzz Aldrin');
         expect(buzz.age).to.equal(36);
         expect(buzz.nationality).to.equal('USA');
-        expect(buzz.specialty).to.equal('mechanical engineering')
+        expect(buzz.expertise).to.equal('mechanical engineering')
     })
 
     it('should have a spaceship property that defaults to null', () => {
@@ -273,25 +273,27 @@ describe('Astronaut', () => {
         })
     })
 
-    context('if their ship has lightspeed capability', () => {
-        it('should boldly go where no one has gone before', () => {
-            earth.buildSpaceship(buzz, 'Voyager', 'USA');
-            buzz.colonizeMoon(moon);
-            buzz.spaceship.detectAlienTechnology();
-            expect(buzz.ventureForth()).to.equal('Buzz Aldrin is the first human to explore deep space!');
+    describe('ventureForth()', () => {
+        context('if their ship has lightspeed capability', () => {
+            it('should boldly go where no one has gone before', () => {
+                earth.buildSpaceship(buzz, 'Voyager', 'USA');
+                buzz.colonizeMoon(moon);
+                buzz.spaceship.detectAlienTechnology();
+                expect(buzz.ventureForth()).to.equal('Buzz Aldrin is the first human to explore deep space!');
+            })
         })
-    })
-    context('if their ship does NOT have lightspeed capability', () => {
-        it('should throw a Spacetime Error', () => {
-            earth.buildSpaceship(buzz, 'Voyager', 'USA');
-            buzz.spaceship.lightspeedCapability = false;
-            try {
-                buzz.ventureForth();
-                expect('SHOULD NOT GET HERE').to.equal(false);
-            } catch (error) {
-                expect(error instanceof SpacetimeError).to.equal(true);
-                expect(error.message).to.equal("Impossible! At least without some extraterrestrial technology...");
-            }
+        context('if their ship does NOT have lightspeed capability', () => {
+            it('should throw a Spacetime Error', () => {
+                earth.buildSpaceship(buzz, 'Voyager', 'USA');
+                buzz.spaceship.lightspeedCapability = false;
+                try {
+                    buzz.ventureForth();
+                    expect('SHOULD NOT GET HERE').to.equal(false);
+                } catch (error) {
+                    expect(error instanceof SpacetimeError).to.equal(true);
+                    expect(error.message).to.equal("Impossible! At least without some extraterrestrial technology...");
+                }
+            })
         })
     })
 })
