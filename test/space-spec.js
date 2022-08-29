@@ -4,16 +4,16 @@ const expect = chai.expect;
 const StellarObject = require('../class/stellar-object.js');
 const Galaxy = require('../class/galaxy.js');
 
-// const Star = require('../class/star');
-// const Supergiant = require('../class/supergiant.js');
+const Star = require('../class/star');
+const Supergiant = require('../class/supergiant.js');
 
 const Planet = require('../class/planet.js');
 const Moon = require('../class/moon.js');
 
 const Astronaut = require('../class/astronaut.js');
-// const Spaceship = require('../class/spaceship.js');
+const Spaceship = require('../class/spaceship.js');
 
-// const SpacetimeError = require('../class/spacetime-error.js');
+const SpacetimeError = require('../class/spacetime-error.js');
 
 
 
@@ -49,98 +49,98 @@ describe('Galaxy', () => {
     })
 })
 
-// describe('Star', () => {
+describe('Star', () => {
 
-//     let milkyWay;
-//     let sol;
-//     let earth;
+    let milkyWay;
+    let sol;
+    let earth;
 
-//     beforeEach(() => {
-//         milkyWay = new Galaxy('Milky way', 13, 154000, 'spiral', []);
-//         sol = new Star('Sol', 4.6, 1, milkyWay, []);
-//         earth = new Planet('Earth', 4.5, .0000003, true);
-//     })
+    beforeEach(() => {
+        milkyWay = new Galaxy('Milky way', 13, 154000, 'spiral', []);
+        sol = new Star('Sol', 4.6, 1, milkyWay, []);
+        earth = new Planet('Earth', 4.5, .0000003, true);
+    })
 
-//     it('should be a subclass of StellarObject', () => {
-//         expect(sol instanceof StellarObject).to.be.true;
-//     })
+    it('should be a subclass of StellarObject', () => {
+        expect(sol instanceof StellarObject).to.be.true;
+    })
 
-//     it('should have a galaxy it exists in', () => {
-//         expect(sol.galaxy).to.equal(milkyWay);
-//     })
+    it('should have a galaxy it exists in', () => {
+        expect(sol.galaxy).to.equal(milkyWay);
+    })
 
-//     it('should add itself to its galaxy\'s stars array upon instantiation', () => {
-//         expect(milkyWay.stars.includes(sol)).to.be.true;
-//     })
+    it('should add itself to its galaxy\'s stars array upon instantiation', () => {
+        expect(milkyWay.stars.includes(sol)).to.be.true;
+    })
 
-//     it('should have an array of planets', () => {
-//         expect(sol.planets).to.exist;
-//     })
+    it('should have an array of planets', () => {
+        expect(sol.planets).to.exist;
+    })
 
-//     describe('addPlanet()', () => {
-//         context('if instance of Planet class', () => {
-//             it('should be able to add a planet', () => {
-//                 expect(sol.planets.length).to.equal(0);
-//                 sol.addPlanet(earth);
-//                 expect(sol.planets.includes(earth)).to.be.true;
-//                 expect(earth.star).to.equal(sol);
-//             })
-//         })
-//         context('if not instance of Planet class', () => {
-//             it('should throw an error', () => {
-//                 let moon = 'Moon';
-//                 try {
-//                     sol.addPlanet(moon);
-//                     expect('SHOULD NOT GET HERE').to.equal(false);
-//                 } catch (error) {
-//                     expect(error.message).to.equal('Must be a planet');
-//                 }
-//             })
-//         })
-//     })
+    describe('addPlanet()', () => {
+        context('if instance of Planet class', () => {
+            it('should be able to add a planet', () => {
+                expect(sol.planets.length).to.equal(0);
+                sol.addPlanet(earth);
+                expect(sol.planets.includes(earth)).to.be.true;
+                expect(earth.star).to.equal(sol);
+            })
+        })
+        context('if not instance of Planet class', () => {
+            it('should throw an error', () => {
+                let moon = 'Moon';
+                try {
+                    sol.addPlanet(moon);
+                    expect('SHOULD NOT GET HERE').to.equal(false);
+                } catch (error) {
+                    expect(error.message).to.equal('Must be a planet');
+                }
+            })
+        })
+    })
 
-//     describe('printPlanets()', () => {
-//         context('if it has planets', () => {
-//             it('should print out a string of all the names of the planets in its orbit', () => {
-//                 let mercury = new Planet('Mercury', 4.5, 0.056, false);
-//                 let venus = new Planet('Venus', 4.5, 0.815, false);
-//                 sol.addPlanet(mercury);
-//                 sol.addPlanet(venus);
-//                 sol.addPlanet(earth);
-//                 expect(sol.printPlanets()).to.equal(`The planets orbiting Sol are Mercury and Venus and Earth`);
-//             })
-//         })
-//         context('if it does not have planets', () => {
-//             it('should print a string saying it is lonely', () => {
-//                 let betelgeuse = new Star('Betelgeuse', 0.1, 20, milkyWay, []);
-//                 expect(betelgeuse.printPlanets()).to.equal('I am a lonely star without any planets!');
-//             })
-//         })
-//     })
-// })
+    describe('printPlanets()', () => {
+        context('if it has planets', () => {
+            it('should print out a string of all the names of the planets in its orbit', () => {
+                let mercury = new Planet('Mercury', 4.5, 0.056, false);
+                let venus = new Planet('Venus', 4.5, 0.815, false);
+                sol.addPlanet(mercury);
+                sol.addPlanet(venus);
+                sol.addPlanet(earth);
+                expect(sol.printPlanets()).to.equal(`The planets orbiting Sol are Mercury and Venus and Earth`);
+            })
+        })
+        context('if it does not have planets', () => {
+            it('should print a string saying it is lonely', () => {
+                let betelgeuse = new Star('Betelgeuse', 0.1, 20, milkyWay, []);
+                expect(betelgeuse.printPlanets()).to.equal('I am a lonely star without any planets!');
+            })
+        })
+    })
+})
 
-// describe('Supergiant', () => {
+describe('Supergiant', () => {
 
-//     let milkyWay;
-//     let betelgeuse;
+    let milkyWay;
+    let betelgeuse;
 
-//     beforeEach(() => {
-//         milkyWay = new Galaxy('Milky way', 13, 154000, 'spiral', []);
-//         betelgeuse = new Supergiant('Betelgeuse', 0.1, 20, milkyWay, []);
-//     })
+    beforeEach(() => {
+        milkyWay = new Galaxy('Milky way', 13, 154000, 'spiral', []);
+        betelgeuse = new Supergiant('Betelgeuse', 0.1, 20, milkyWay, []);
+    })
 
-//     it('should be a subclass of Star', () => {
-//         expect(betelgeuse instanceof Star).to.be.true;
-//     })
+    it('should be a subclass of Star', () => {
+        expect(betelgeuse instanceof Star).to.be.true;
+    })
 
-//     it('should be able to go supernova', () => {
-//         let planetA = 'planetA', planetB = 'planetB';
-//         betelgeuse.planets.push(planetA, planetB);
-//         betelgeuse.supernova();
-//         expect(betelgeuse.supernova()).to.equal('Betelgeuse explodes in a cosmically dazzling show of light!');
-//         expect(betelgeuse.planets.length).to.equal(0);
-//     })
-// })
+    it('should be able to go supernova', () => {
+        let planetA = 'planetA', planetB = 'planetB';
+        betelgeuse.planets.push(planetA, planetB);
+        betelgeuse.supernova();
+        expect(betelgeuse.supernova()).to.equal('Betelgeuse explodes in a cosmically dazzling show of light!');
+        expect(betelgeuse.planets.length).to.equal(0);
+    })
+})
 
 describe('Planet', () => {
 
@@ -298,21 +298,21 @@ describe('Astronaut', () => {
     })
 })
 
-// describe('Spaceship', () => {
-//     let earth = new Planet('Earth', 4.5, .0000003, true);
-//     let moon = new Moon('Moon', 4.45, .0123, earth);
+describe('Spaceship', () => {
+    let earth = new Planet('Earth', 4.5, .0000003, true);
+    let moon = new Moon('Moon', 4.45, .0123, earth);
 
-//     it('should not have an associated astronaut or lightspeed capability by default', () => {
-//         let ship = new Spaceship('Titanic', 'Germany');
-//         expect(ship.astronaut).to.equal(null);
-//         expect(ship.lightspeedCapability).to.be.false;
-//     })
+    it('should not have an associated astronaut or lightspeed capability by default', () => {
+        let ship = new Spaceship('Titanic', 'Germany');
+        expect(ship.astronaut).to.equal(null);
+        expect(ship.lightspeedCapability).to.be.false;
+    })
 
-//     it('should detect alien technology if it has been flown to the moon', () => {
-//         let buzz = earth.recruitAstronaut('Buzz Aldrin', 36, 'USA', 'mechanical engineering');
-//         earth.buildSpaceship(buzz, 'Voyager', 'USA');
-//         buzz.colonizeMoon(moon);
-//         expect(buzz.spaceship.detectAlienTechnology()).to.equal(`Voyager has detected alien technology on the dark side of the moon!`);
-//         expect(buzz.spaceship.lightspeedCapability).to.be.true;
-//     })
-// })
+    it('should detect alien technology if it has been flown to the moon', () => {
+        let buzz = earth.recruitAstronaut('Buzz Aldrin', 36, 'USA', 'mechanical engineering');
+        earth.buildSpaceship(buzz, 'Voyager', 'USA');
+        buzz.colonizeMoon(moon);
+        expect(buzz.spaceship.detectAlienTechnology()).to.equal(`Voyager has detected alien technology on the dark side of the moon!`);
+        expect(buzz.spaceship.lightspeedCapability).to.be.true;
+    })
+})
