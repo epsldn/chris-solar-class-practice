@@ -70,7 +70,7 @@ describe('Star', () => {
     })
 
     it('should add itself to its galaxy\'s stars array upon instantiation', () => {
-        expect(sol.galaxy.stars.includes(sol));
+        expect(milkyWay.stars.includes(sol));
     })
 
     it('should have an array of planets', () => {
@@ -156,15 +156,18 @@ describe('Planet', () => {
         expect(earth instanceof StellarObject).to.be.true;
     })
 
-    it('should have an array of moons', () => {
-        expect(earth.moons).to.exist;
-    })
 
     it('should have a property indicating if the planet is habitable', () => {
         expect(earth.habitability).to.be.true;
     })
 
+    it('should have an array of moons', () => {
+        expect(earth.moons).to.exist;
+    })
+
     it('should have an array of astronauts if the planet is habitable', () => {
+        let mars = new Planet('Mars', 4.5, .00000004, false)
+        expect(mars.astronauts).not.to.exist;
         expect(earth.astronauts).to.deep.equal([]);
     })
 
@@ -218,6 +221,10 @@ describe('Moon', () => {
         expect(earth.moons.includes(moon)).to.be.true;
     })
 
+    it('should have a colonizationStatus property that defaults to false', () => {
+        expect(moon.colonizationStatus).to.be.false;
+    })
+
     it('should contain an array of nations that have successfully sent astronauts to it', () => {
         let buzz = earth.recruitAstronaut('Buzz Aldrin', 36, 'USA', 'mechanical engineering');
         let ivan = earth.recruitAstronaut('Ivan Smirnoff', 42, 'USSR', 'drinking vodka');
@@ -240,11 +247,22 @@ describe('Astronaut', () => {
         buzz = earth.recruitAstronaut('Buzz Aldrin', 36, 'USA', 'mechanical engineering');
     })
 
+    it('should have name, age, nationality, and specialty properties', () => {
+        expect(buzz.name).to.equal('Buzz Aldrin');
+        expect(buzz.age).to.equal(36);
+        expect(buzz.nationality).to.equal('USA');
+        expect(buzz.specialty).to.equal('mechanical engineering')
+    })
+
+    it('should have a spaceship property that defaults to null', () => {
+        expect(buzz.spaceship).to.equal(null);
+    })
+
     it('should be able to start a colony on a nearby moon if they have a spaceship', () => {
         earth.buildSpaceship(buzz, 'Voyager', 'USA');
         expect(buzz.colonizeMoon(moon)).to.equal('Buzz Aldrin begins a lunar colony and is now a Moonman!');
-        expect(moon.colonizationStatus).to.be.true;
         expect(buzz.nationality).to.equal('Moonman');
+        expect(moon.colonizationStatus).to.be.true;
     })
 
     describe('astronautLogs', () => {
