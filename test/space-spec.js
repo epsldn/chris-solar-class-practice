@@ -4,7 +4,7 @@ const expect = chai.expect;
 const StellarObject = require('../class/stellar-object.js');
 const Galaxy = require('../class/galaxy.js');
 
-// const Star = require('../class/star');
+const Star = require('../class/star');
 // const Supergiant = require('../class/supergiant.js');
 
 // const Planet = require('../class/planet.js');
@@ -49,55 +49,55 @@ describe('Galaxy', () => {
     })
 })
 
-// describe('Star', () => {
+describe('Star', () => {
 
-//     let milkyWay;
-//     let sol;
-//     let earth;
+    let milkyWay;
+    let sol;
+    let earth;
 
-//     beforeEach(() => {
-//         milkyWay = new Galaxy('Milky way', 13, 154000, 'spiral', []);
-//         sol = new Star('Sol', 4.6, 1, milkyWay, []);
-//         earth = new Planet('Earth', 4.5, .0000003, true);
-//     })
+    beforeEach(() => {
+        milkyWay = new Galaxy('Milky way', 13, 154000, 'spiral', []);
+        sol = new Star('Sol', 4.6, 1, milkyWay, []);
+        earth = new Planet('Earth', 4.5, .0000003, true);
+    })
 
-//     it('should be a subclass of StellarObject', () => {
-//         expect(sol instanceof StellarObject).to.be.true;
-//     })
+    it('should be a subclass of StellarObject', () => {
+        expect(sol instanceof StellarObject).to.be.true;
+    })
 
-//     it('should have a galaxy it exists in', () => {
-//         expect(sol.galaxy).to.equal(milkyWay);
-//     })
+    it('should have a galaxy it exists in', () => {
+        expect(sol.galaxy).to.equal(milkyWay);
+    })
 
-//     it('should add itself to its galaxy\'s stars array upon instantiation', () => {
-//         expect(milkyWay.stars.includes(sol)).to.be.true;
-//     })
+    it('should add itself to its galaxy\'s stars array upon instantiation', () => {
+        expect(milkyWay.stars.includes(sol)).to.be.true;
+    })
 
-//     it('should have an array of planets', () => {
-//         expect(sol.planets).to.exist;
-//     })
+    it('should have an array of planets', () => {
+        expect(sol.planets).to.exist;
+    })
 
-//     describe('addPlanet()', () => {
-//         context('if instance of Planet class', () => {
-//             it('should be able to add a planet', () => {
-//                 expect(sol.planets.length).to.equal(0);
-//                 sol.addPlanet(earth);
-//                 expect(sol.planets.includes(earth)).to.be.true;
-//                 expect(earth.star).to.equal(sol);
-//             })
-//         })
-//         context('if not instance of Planet class', () => {
-//             it('should throw an error', () => {
-//                 let moon = 'Moon';
-//                 try {
-//                     sol.addPlanet(moon);
-//                     expect('SHOULD NOT GET HERE').to.equal(false);
-//                 } catch (error) {
-//                     expect(error.message).to.equal('Must be a planet');
-//                 }
-//             })
-//         })
-//     })
+    describe('addPlanet()', () => {
+        context('if instance of Planet class', () => {
+            it('should be able to add a planet', () => {
+                expect(sol.planets.length).to.equal(0);
+                sol.addPlanet(earth);
+                expect(sol.planets.includes(earth)).to.be.true;
+                expect(earth.star).to.equal(sol);
+            })
+        })
+        context('if not instance of Planet class', () => {
+            it('should throw an error', () => {
+                let moon = 'Moon';
+                try {
+                    sol.addPlanet(moon);
+                    expect('SHOULD NOT GET HERE').to.equal(false);
+                } catch (error) {
+                    expect(error.message).to.equal('Must be a planet');
+                }
+            })
+        })
+    })
 
 //     describe('printPlanets()', () => {
 //         context('if it has planets', () => {
